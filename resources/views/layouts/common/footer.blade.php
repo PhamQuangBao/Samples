@@ -55,7 +55,7 @@
     //View
     var myView = new ol.View({
         center: [12058967.723979553, 1795341.2859919432],
-        zoom: 20,
+        zoom: 17,
     })
 
     //OSM Layer

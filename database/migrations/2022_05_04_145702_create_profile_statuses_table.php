@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('personal_access_tokens', function (Blueprint $table) {
-            $table->id();
-            $table->morphs('tokenable');
+        Schema::create('profile_statuses', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('name');
-            $table->string('token', 64)->unique();
-            $table->text('abilities')->nullable();
-            $table->timestamp('last_used_at')->nullable();
+            //cv_status foreign key 1-n
+            $table->integer('profile_status_group_id')->unsigned()->nullable();
+            $table->foreign('profile_status_group_id')->references('id')->on('profile_status_groups');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('personal_access_tokens');
+        Schema::dropIfExists('profile_statuses');
     }
 };
